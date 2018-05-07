@@ -29,39 +29,83 @@ public class Main {
         for (int i = 0; i < 8; i++) {
             p[4][i] = p0 / 1000 + (d5p1[i] + d5p2[i]) / 2;
         }
-        double[] y = new double[8];
-        double[] x = new double[8];
-        double[] d = new double[8];
+        double y;
+        double x;
+        double d;
         double[] a = new double[8];
         double[] c = new double[8];
-double[]tz = new double[8];
-        double sy;
-        double sx;
+        double[] tz = new double[8];
+        double sy = 0;
+        double sx = 0;
         double sd;
         double sa;
+        double se = 0;
+        double E;
+        sd = 0;
+        for (int j = 0; j < 5; j++) {
+            sy += p[j][0];
+            sx += t[j];
+
+
+        }
+
+        y = sy / 5;
+//            System.out.println(y[i]);
+        x = sx / 5;
+//        System.out.println(x);
+//        System.out.println(y);
+        for (int j = 0; j < 5; j++) {
+            sd += Math.pow((t[j] - x), 2);
+        }
+        d = sd;
+
+//        System.out.println(d);
         for (int i = 0; i < 8; i++) {
-            sy = 0;
-            sx = 0;
-            sd = 0;
             sa = 0;
             for (int j = 0; j < 5; j++) {
-                sy += p[j][i];
-                sx += t[j];
 
+                sa += (t[j] - x) * p[j][i];
             }
-            y[i] =    sy/5;
-            x[i] =  sx/5;
-            for (int j = 0; j < 5; j++) {
-                sd += Math.pow((t[j] - x[i]), 2);
-                sa += (t[j] - x[i]) * y[i];
-            }
-            d[i] = sd;
 
-            a[i] =  sa/d[i];
-            c[i]=y[i]-a[i]*x[i];
-            tz[i]=-a[i]/c[i];
-            System.out.println(tz[i]);
+            a[i] = sa / d;
+//            System.out.println(a[i]);
+            c[i] = y - a[i] * x;
+//            System.out.println(c[i]);
+            tz[i] = -c[i] / a[i];
+//            System.out.println(tz[i]);
+
         }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        double[] Vc = {0.02, 0.016667, 0.0142857, 0.0125, 0.0111111, 0.01, 0.009090909, 0.008333333};
+        sy = 0;
+        sx = 0;
+        for (int j = 0; j < 8; j++) {
+            sy += tz[j];
+            sx += Vc[j];
+        }
+        y = sy / 8;
+//            System.out.println(y[i]);
+        x = sx / 8;
+//        System.out.println(y);
+//        System.out.println(x);
+        sd=0;
+        for (int j = 0; j < 8; j++) {
+            sd += Math.pow((Vc[j] - x), 2);
+
+        }
+        d = sd;
+//        System.out.println(d);
+        sa=0;
+        for (int j = 0; j < 8; j++) {
+            sa += (Vc[j] - x) * tz[j];
+            System.out.println(Vc[j]-x);
+        } System.out.println(sa);
+        double aa = sa/d;
+        double cc = y-aa*x;
+        System.out.println(aa);
+        System.out.println(cc);
+
+
 
     }
 }
