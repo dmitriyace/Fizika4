@@ -88,24 +88,37 @@ public class Main {
         x = sx / 8;
 //        System.out.println(y);
 //        System.out.println(x);
-        sd=0;
+        sd = 0;
         for (int j = 0; j < 8; j++) {
             sd += Math.pow((Vc[j] - x), 2);
 
         }
         d = sd;
 //        System.out.println(d);
-        sa=0;
+        sa = 0;
         for (int j = 0; j < 8; j++) {
             sa += (Vc[j] - x) * tz[j];
-            System.out.println(Vc[j]-x);
-        } System.out.println(sa);
-        double aa = sa/d;
-        double cc = y-aa*x;
-        System.out.println(aa);
-        System.out.println(cc);
+            System.out.println(Vc[j] - x);
+        }
+//        System.out.println(sa);
+        double aa = sa / d;
+        double cc = y - aa * x;
+//        System.out.println(aa);
+//        System.out.println(cc);
 
+        double e;
+         se=0;
+        for (int i=0;i<8;i++){
+            se+=Math.pow((tz[i]-aa*Vc[i]-cc),2);
 
+        }
 
+        e=se/6;
+        double dc;
+        dc=Math.sqrt(((1/8)+(x/d))*e);
+        double da = Math.sqrt(e/d);
+        System.out.println(e);
+        System.out.println(dc);
+        System.out.println(da);
     }
 }
